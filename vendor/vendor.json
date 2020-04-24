@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ep2BurYaI2ZGnsXDIZe53Wzk/BI=",
+			"path": "github.com/lann/builder",
+			"revision": "47ae307949d02aa1f1069fdafc00ca08e1dbabac",
+			"revisionTime": "2018-08-02T20:07:27Z"
+		},
+		{
+			"checksumSHA1": "ejk81Jl3JsLEvRWay5qu1Rf68Yo=",
+			"path": "github.com/squirrel",
+			"revision": "8186d410ca05a412eb6b004639ff2d08b909d9a4",
+			"revisionTime": "2020-04-12T14:41:11Z"
+		}
+	],
+	"rootPath": "github.com/lib"
+}
