@@ -17,7 +17,8 @@ type Value interface {
 }
 
 type Key interface {
-	Cmp(Key) int //1: a > other, 0: a == other, -1: a < other
+	//1: a > other, 0: a == other, -1: a < other
+	Cmp(Key) int
 }
 
 func New() *Ranker {
