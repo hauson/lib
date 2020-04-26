@@ -4,15 +4,39 @@ import (
 	"testing"
 	"fmt"
 
-	sq "github.com/squirrel"
+	"github.com/lib/mock"
 )
 
-func TestGen(t *testing.T) {
-	builder := sq.Insert("users").Columns("name", "age").Values("moe", 13).Values("larry", sq.Expr("? + 5", 12))
-	sql, err := ToSql(builder)
+func TestInsertSql(t *testing.T) {
+	v := mock.MockAdds{Name: "cuihaoxin"}
+	sql, err := Sql(Insert, v)
 	if err != nil {
 		t.Error(err)
 	}
 
-	fmt.Println("sql:", sql)
+	if sql != "INSERT INTO mock_addss (name) VALUES ('cuihaoxin');" {
+		t.Error("not equal")
+	}
+}
+
+func TestDeleteSql(t *testing.T) {
+	v := mock.MockAdds{Name: "cuihaoxin"}
+	sql, err := Sql(Delete, v)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if sql != "DELETE FROM mock_addss WHERE name = 'cuihaoxin';" {
+		t.Error("not equal")
+	}
+}
+
+func TestUpdateSql(t *testing.T) {
+	v := mock.MockAdds{ID: 7, Name: "cuihaoxin"}
+	sql, err := Sql(Update, v)
+	if err != nil {
+		t.Error(err)
+	}
+
+	fmt.Println(sql)
 }
