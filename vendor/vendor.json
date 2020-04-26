@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "TzlxpoKlJhzYrtQ8Ax4lmJsEDWc=",
+			"path": "github.com/emirpasic/gods/trees/redblacktree",
+			"revision": "80e934ed68b9084f386ae25f74f839aaecfb54d8",
+			"revisionTime": "2020-03-31T18:59:43Z"
+		},
+		{
 			"checksumSHA1": "ep2BurYaI2ZGnsXDIZe53Wzk/BI=",
 			"path": "github.com/lann/builder",
 			"revision": "47ae307949d02aa1f1069fdafc00ca08e1dbabac",
