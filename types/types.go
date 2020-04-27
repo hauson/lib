@@ -1,6 +1,8 @@
 package types
 
-import "reflect"
+import (
+	"reflect"
+)
 
 func ElemType(i interface{}) reflect.Type {
 	iType := reflect.TypeOf(i)
@@ -11,10 +13,29 @@ func ElemType(i interface{}) reflect.Type {
 	return iType
 }
 
+func ElemValue(i interface{}) reflect.Value {
+	iValue := reflect.ValueOf(i)
+	iType := reflect.TypeOf(i)
+	if iType.Kind() == reflect.Ptr {
+		return iValue.Elem()
+	}
+
+	return iValue
+}
+
 func IsTypeInitValue(i interface{}) bool {
 	elemType := ElemType(i)
 	v := reflect.New(elemType).Elem().Interface()
 	return reflect.DeepEqual(i, v)
+}
+
+func IsNil(i interface{}) bool {
+	vi := reflect.ValueOf(i)
+	if vi.Kind() == reflect.Ptr {
+		return vi.IsNil()
+	}
+
+	return false
 }
 
 func FieldNames(i interface{}) []string {
@@ -28,7 +49,7 @@ func FieldNames(i interface{}) []string {
 
 func FieldValues(i interface{}) []interface{} {
 	var values []interface{}
-	iValue := reflect.ValueOf(i)
+	iValue := ElemValue(i)
 	for i := 0; i < iValue.NumField(); i++ {
 		values = append(values, iValue.Field(i).Interface())
 	}
