@@ -85,6 +85,10 @@ func tableName(i interface{}) string {
 func columnsAndValues(i interface{}) (columns []string, values []interface{}) {
 	fieldNames := types.FieldNames(i)
 	for i, value := range types.FieldValues(i) {
+		if types.IsNil(value) {
+			continue
+		}
+
 		if types.IsTypeInitValue(value) {
 			continue
 		}
