@@ -1,6 +1,6 @@
 package pagefile
 
-func (file *PageFile) run() {
+func (file *File) run() {
 	defer file.wg.Done()
 
 	for {
@@ -19,7 +19,7 @@ func (file *PageFile) run() {
 	}
 }
 
-func (file *PageFile) Close() {
+func (file *File) Close() {
 	close(file.exitSig)
 	file.wg.Wait()
 	file.fd.Close()
