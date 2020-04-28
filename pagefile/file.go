@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-type PageFile struct {
+type File struct {
 	page    *Pager
 	namer   *Namer
 	fd      *os.File
@@ -14,8 +14,8 @@ type PageFile struct {
 	wg      sync.WaitGroup
 }
 
-func New(file string, linesPage int) (*PageFile, error) {
-	pageFile := &PageFile{
+func New(file string, linesPage int) (*File, error) {
+	pageFile := &File{
 		page:    NewPager(linesPage),
 		namer:   NewNamer(file),
 		lineCh:  make(chan string, 2000),
@@ -32,13 +32,13 @@ func New(file string, linesPage int) (*PageFile, error) {
 	return pageFile, nil
 }
 
-func (file *PageFile) WriteLines(lines ...string) {
+func (file *File) WriteLines(lines ...string) {
 	for _, line := range lines {
 		file.lineCh <- line
 	}
 }
 
-func (file *PageFile) openOrCreate() error {
+func (file *File) openOrCreate() error {
 	if file.fd != nil {
 		file.fd.Close()
 	}
