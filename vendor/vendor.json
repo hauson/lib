@@ -21,6 +21,18 @@
 			"revisionTime": "2020-04-09T03:24:25Z"
 		},
 		{
+			"checksumSHA1": "kCiYjWVsI7JrUA9SogAebi2cp00=",
+			"path": "github.com/lestrrat-go/file-rotatelogs/internal/option",
+			"revision": "0b0a5762632fa8aa5166bc9290ffc2732bbd2178",
+			"revisionTime": "2020-04-09T03:24:25Z"
+		},
+		{
+			"checksumSHA1": "zjUbP4ZkDr+S3slUKnmJScYyGAo=",
+			"path": "github.com/lestrrat-go/strftime",
+			"revision": "d3c5981dbca3ba8f141a361fb2b985c1f5d0f806",
+			"revisionTime": "2020-01-06T01:14:45Z"
+		},
+		{
 			"checksumSHA1": "4GI/G+nYyCQ3ltASSBIunUr2LYk=",
 			"path": "github.com/sirupsen/logrus",
 			"revision": "de736cf91b921d56253b4010270681d33fdf7cb5",
