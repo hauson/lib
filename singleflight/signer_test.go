@@ -11,7 +11,7 @@ func TestSingleflight(t *testing.T) {
 	go func() {
 		sumer := NewSumer(1, 2)
 		singer.Flight(sumer)
-		<-sumer.Done()
+		sumer.Wait()
 		i, err := sumer.Result()
 		if err != nil {
 			fmt.Println(err)
@@ -24,7 +24,7 @@ func TestSingleflight(t *testing.T) {
 	go func() {
 		sumer := NewSumer(1, 2)
 		singer.Flight(sumer)
-		<-sumer.Done()
+		sumer.Wait()
 		i, err := sumer.Result()
 		if err != nil {
 			fmt.Println(err)
@@ -33,10 +33,13 @@ func TestSingleflight(t *testing.T) {
 		num := i.(int)
 		fmt.Println("g2:", num)
 	}()
+
 	go func() {
-		sumer := NewSumer(1, 2)
+		time.Sleep(1 * time.Second)
+		sumer := NewSumer(2, 2)
+		sumer.expire = time.Now().Add(time.Second)
 		singer.Flight(sumer)
-		<-sumer.Done()
+		sumer.Wait()
 		i, err := sumer.Result()
 		if err != nil {
 			fmt.Println(err)
@@ -47,13 +50,28 @@ func TestSingleflight(t *testing.T) {
 	}()
 
 	go func() {
+		time.Sleep(1 * time.Second)
+		sumer := NewSumer(2, 2)
+		sumer.expire = time.Now().Add(time.Second)
+		singer.Flight(sumer)
+		sumer.Wait()
+		i, err := sumer.Result()
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		num := i.(int)
+		fmt.Println("g4:", num)
+	}()
+
+	go func() {
 		for i := 0; i < 100; i++ {
 			fmt.Printf("%d second \n", i)
 			time.Sleep(1 * time.Second)
 		}
 	}()
 
-	time.Sleep(13 * time.Second)
+	time.Sleep(20 * time.Second)
 }
 
 type Sumer struct {
@@ -62,14 +80,15 @@ type Sumer struct {
 	done   chan int
 	result int
 	err    error
-	valid  bool
+	expire time.Time
 }
 
 func NewSumer(num1, num2 int) *Sumer {
 	return &Sumer{
-		num1: num1,
-		num2: num2,
-		done: make(chan int),
+		num1:   num1,
+		num2:   num2,
+		done:   make(chan int),
+		expire: time.Now().Add(5 * time.Second),
 	}
 }
 
@@ -77,8 +96,8 @@ func (s *Sumer) Key() string {
 	return fmt.Sprintf("sum:%d+%d", s.num1, s.num2)
 }
 
-func (s *Sumer) Done() <-chan int {
-	return s.done
+func (s *Sumer) Wait() {
+	<-s.done
 }
 
 func (s *Sumer) Result() (interface{}, error) {
@@ -92,20 +111,15 @@ func (s *Sumer) CopyResult(i Executor) {
 }
 
 func (s *Sumer) Do() {
-	fmt.Println("sum done")
+	fmt.Println("sum done:", s.Key())
 	time.Sleep(5 * time.Second)
 	s.result = s.num1 + s.num2
 	s.err = nil
-	s.SetValid(false)
 	s.Close()
 }
 
-func (s *Sumer) Valid() bool {
-	return s.valid
-}
-
-func (s *Sumer) SetValid(b bool) {
-	s.valid = b
+func (s *Sumer) Expire() time.Time {
+	return s.expire
 }
 
 func (s *Sumer) Close() {
