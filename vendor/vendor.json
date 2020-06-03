@@ -9,6 +9,12 @@
 			"revisionTime": "2020-03-31T18:59:43Z"
 		},
 		{
+			"checksumSHA1": "V4/dyPSuZTNelyv461Z//9mGrZY=",
+			"path": "github.com/gin-gonic/gin",
+			"revision": "c9b853581700d6834cc6e658d6966ac35b52f969",
+			"revisionTime": "2020-05-25T12:13:09Z"
+		},
+		{
 			"checksumSHA1": "w01kP96jx5UAf+uWB8m0w8Xghas=",
 			"path": "github.com/golang/freetype",
 			"revision": "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4",
