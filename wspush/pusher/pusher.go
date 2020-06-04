@@ -15,6 +15,7 @@ type Pusher struct {
 	cfg      *configs.Config
 	upgrader *websocket.Upgrader
 	conns    *connects
+	cache    *msg.Cache
 }
 
 // Wrapper return Pusher
@@ -22,6 +23,7 @@ func New(cfg *configs.Config) *Pusher {
 	server := &Pusher{
 		cfg:      cfg,
 		conns:    newConns(),
+		cache:    msg.NewCache(),
 		upgrader: new(websocket.Upgrader),
 	}
 	return server
@@ -36,7 +38,7 @@ func (s *Pusher) Run() {
 			return
 		}
 
-		s.conns.add(conn.New(c))
+		s.conns.add(conn.New(c, s.cache))
 	})
 
 	http.ListenAndServe(s.cfg.Port, nil)
@@ -44,6 +46,8 @@ func (s *Pusher) Run() {
 
 // Send msg
 func (s *Pusher) Send(msg msg.Raw) {
+	s.cache.Set(msg)
+
 	for _, c := range s.conns.all() {
 		if c.IsClosed() {
 			s.conns.del(c)
