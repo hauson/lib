@@ -20,11 +20,12 @@ type Connection struct {
 	conn     *websocket.Conn
 	topics   map[string]bool
 	msgQueue chan msg.Raw
+	cache    *msg.Cache
 	account  string
 	exitSig  chan int
 }
 
-func New(rawConn *websocket.Conn) *Connection {
+func New(rawConn *websocket.Conn, cache *msg.Cache) *Connection {
 	c := &Connection{
 		conn:    rawConn,
 		exitSig: make(chan int),
@@ -32,6 +33,7 @@ func New(rawConn *websocket.Conn) *Connection {
 			(*Response)(nil).Type():  true,
 			(*Heartbeat)(nil).Type(): true,
 		},
+		cache:    cache,
 		msgQueue: make(chan msg.Raw, 1000),
 	}
 
@@ -97,6 +99,9 @@ func (c *Connection) subscribe(topics []string) error {
 
 	for _, topic := range topics {
 		c.topics[topic] = true
+		if latest, ok := c.cache.Get(topic); ok {
+			c.write(latest)
+		}
 	}
 
 	return nil
