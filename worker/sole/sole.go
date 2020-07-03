@@ -1,4 +1,4 @@
-package worker
+package sole
 
 import "sync"
 
