@@ -70,3 +70,17 @@ func ToSlice(i interface{}) []interface{} {
 	}
 	return ss
 }
+
+func ToMap(i interface{}) map[interface{}]interface{} {
+	iType := reflect.TypeOf(i)
+	if iType.Kind() != reflect.Map {
+		return map[interface{}]interface{}{i: i}
+	}
+
+	iValue := reflect.ValueOf(i)
+	m := make(map[interface{}]interface{})
+	for _, k := range iValue.MapKeys() {
+		m[k.Interface()] = iValue.MapIndex(k).Interface()
+	}
+	return m
+}
