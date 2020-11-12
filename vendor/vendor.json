@@ -3,6 +3,11 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "axdBN2AhA61uJivf5kO7C+rWN+U=",
+			"path": "database/sql",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "TzlxpoKlJhzYrtQ8Ax4lmJsEDWc=",
 			"path": "github.com/emirpasic/gods/trees/redblacktree",
 			"revision": "80e934ed68b9084f386ae25f74f839aaecfb54d8",
@@ -19,6 +24,12 @@
 			"path": "github.com/golang/freetype",
 			"revision": "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4",
 			"revisionTime": "2017-06-09T00:35:04Z"
+		},
+		{
+			"checksumSHA1": "/ix7M4gGtlOsNDosUbT6N9VmBo4=",
+			"path": "github.com/google/uuid",
+			"revision": "0e4e31197428a347842d152773b4cace4645ca25",
+			"revisionTime": "2020-07-02T18:56:42Z"
 		},
 		{
 			"checksumSHA1": "ep2BurYaI2ZGnsXDIZe53Wzk/BI=",
@@ -43,6 +54,12 @@
 			"path": "github.com/lestrrat-go/strftime",
 			"revision": "d3c5981dbca3ba8f141a361fb2b985c1f5d0f806",
 			"revisionTime": "2020-01-06T01:14:45Z"
+		},
+		{
+			"checksumSHA1": "QxBGuFiDP7AZx9/QOwJVVDlHjLM=",
+			"path": "github.com/sergi/go-diff/diffmatchpatch",
+			"revision": "58c5cb1602ee9676b5d3590d782bedde80706fcc",
+			"revisionTime": "2019-11-19T14:19:55Z"
 		},
 		{
 			"checksumSHA1": "4GI/G+nYyCQ3ltASSBIunUr2LYk=",
