@@ -31,6 +31,10 @@ func IsTypeInitValue(i interface{}) bool {
 
 func IsNil(i interface{}) bool {
 	vi := reflect.ValueOf(i)
+	if !vi.IsValid() {
+		return true
+	}
+
 	if vi.Kind() == reflect.Ptr {
 		return vi.IsNil()
 	}
