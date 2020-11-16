@@ -6,6 +6,7 @@ import (
 	"reflect"
 
 	"github.com/lib/types"
+
 	"github.com/sergi/go-diff/diffmatchpatch"
 )
 
@@ -13,7 +14,19 @@ var dmp = diffmatchpatch.New()
 
 // Diff diff interface{}
 func Diff(o1, o2 interface{}, ignoreFields ...string) string {
-	switch reflect.TypeOf(o1).Kind() {
+	if types.IsNil(o1) && types.IsNil(o2) {
+		return ""
+	}
+
+	var kind reflect.Kind
+	switch {
+	case !types.IsNil(o1):
+		kind = reflect.TypeOf(o1).Kind()
+	case !types.IsNil(o2):
+		kind = reflect.TypeOf(o1).Kind()
+	}
+
+	switch kind {
 	case reflect.Slice:
 		return DiffSlice(o1, o2, ignoreFields...)
 	case reflect.Map:
@@ -25,6 +38,10 @@ func Diff(o1, o2 interface{}, ignoreFields ...string) string {
 
 // DiffObj o1, o2 must be ptr
 func DiffObj(o1, o2 interface{}, ignoreFields ...string) string {
+	if types.IsNil(o1) || types.IsNil(o2) {
+		return diffText(o1, o2)
+	}
+
 	clearFields(o1, ignoreFields...)
 	clearFields(o2, ignoreFields...)
 	return diff(o1, o2)
@@ -32,6 +49,10 @@ func DiffObj(o1, o2 interface{}, ignoreFields ...string) string {
 
 // DiffSlice o1,o2 must be []ptr
 func DiffSlice(o1, o2 interface{}, ignoreFields ...string) string {
+	if types.IsNil(o1) || types.IsNil(o2) {
+		return diffText(o1, o2)
+	}
+
 	s1 := types.ToSlice(o1)
 	clearSlice(s1, ignoreFields...)
 
@@ -42,6 +63,10 @@ func DiffSlice(o1, o2 interface{}, ignoreFields ...string) string {
 
 // DiffMap m1,m2 must be map[interface{}]ptr
 func DiffMap(o1, o2 interface{}, ignoreFields ...string) string {
+	if types.IsNil(o1) || types.IsNil(o2) {
+		return diffText(o1, o2)
+	}
+
 	m1 := types.ToMap(o1)
 	m2 := types.ToMap(o2)
 	if len(m1) != len(m2) {
