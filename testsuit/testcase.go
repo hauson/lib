@@ -17,6 +17,7 @@ func (s TestSuit) Range(t *testing.T, do Do) {
 		if diff := c.DiffErr(err); diff != "" {
 			t.Fatalf("%s, want and got err diff: %s", desc, diff)
 		}
+
 		if err != nil {
 			continue
 		}
