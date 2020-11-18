@@ -1,0 +1,52 @@
+set nowrap
+" 共享剪贴板
+set clipboard+=unnamed
+
+let mapleader = ','
+
+inoremap kj <Esc>
+inoremap kk <Esc>
+inoremap jk <Esc>
+inoremap jj <Esc>
+
+nnoremap Y y$
+nnoremap viwp viw"0p
+nnoremap diw "0diw 
+nnoremap <Leader>" viw<esc>bi"<esc>ea"<esc>
+nnoremap <Leader>' viw<esc>bi'<esc>ea'<esc>
+nnoremap <Leader>` viw<esc>bi`<esc>ea`<esc>
+nnoremap <Leader>( viw<esc>bi(<esc>ea)<esc>b
+nnoremap <Leader>) viw<esc>bi(<esc>ea)<esc>b
+
+nnoremap n F
+vnoremap n F
+
+nmap <CR> o<Esc>
+nmap <c-p> o<Esc>p
+
+nmap gl <S-$>
+nmap gh <S-^>
+nmap gk [{
+nmap gj ]}
+nmap gf <S-$>%<S-^>
+
+vmap gl <S-$>
+vmap gh <S-^>
+vmap gk [{
+vmap gj ]}
+vmap gf %<S-^>
+
+
+nmap gq ``
+nmap g. `. 
+nmap g^ `^
+nmap g[ `[
+nmap g] `]
+nmap g< `<
+nmap g> `>
+
+nnoremap <CR> <c-w>f
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-k> <c-w>k
+nnoremap <c-j> <c-w>j
