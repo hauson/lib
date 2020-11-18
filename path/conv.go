@@ -25,3 +25,11 @@ func RelativePath(path, projRoot string) string {
 	}
 	return relativePath + path
 }
+
+// FillOSArgs use for blockcenter, becasue it fill cfg is sick
+func FillOSArgs(relativeCfg, projRoot string) {
+	if len(os.Args) == 1 {
+		relativePath := RelativePath("config_travis.json", "blockcenter")
+		os.Args = append(os.Args, relativePath)
+	}
+}
