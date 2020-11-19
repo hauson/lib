@@ -27,6 +27,13 @@ func RelativePath(path, projRoot string) string {
 }
 
 // FillOSArgs use for blockcenter, becasue it fill cfg is sick
+// demo:
+// go.mod
+// github.com/lib/path v0.0.0
+//[replace]
+// github.com/lib/path => ../../../github.com/lib/path
+//[src.go]
+// path.FillOSArgs("config_travis.json", "blockcenter")
 func FillOSArgs(relativeCfg, projRoot string) {
 	if len(os.Args) == 1 {
 		relativePath := RelativePath("config_travis.json", "blockcenter")
