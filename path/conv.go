@@ -36,7 +36,7 @@ func RelativePath(path, projRoot string) string {
 // path.FillOSArgs("config_travis.json", "blockcenter")
 func FillOSArgs(relativeCfg, projRoot string) {
 	if len(os.Args) == 1 {
-		relativePath := RelativePath("config_travis.json", "blockcenter")
+		relativePath := RelativePath(relativeCfg, projRoot)
 		os.Args = append(os.Args, relativePath)
 	}
 }
