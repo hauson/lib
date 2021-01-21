@@ -1,10 +1,10 @@
 package sqlgenerator
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 
-	"github.com/lib/mock"
+	"github.com/hauson/lib/mock"
 )
 
 func TestInsertSql(t *testing.T) {

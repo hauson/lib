@@ -1,13 +1,13 @@
 package sqlgenerator
 
 import (
-	"strings"
 	"errors"
 	"fmt"
 	sq "github.com/squirrel"
+	"strings"
 
-	"github.com/lib/char"
-	"github.com/lib/types"
+	"github.com/hauson/lib/char"
+	"github.com/hauson/lib/types"
 )
 
 type SqlOpr string
