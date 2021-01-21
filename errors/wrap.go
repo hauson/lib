@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lib/print"
+	"github.com/hauson/lib/print"
 )
 
 // Wrap error
@@ -14,7 +14,7 @@ func Wrap(err error, v ...string) error {
 		s = err.Error()
 	}
 
-	file, line := print.FileLine()
+	fileLine := print.FileLineNum()
 	info := strings.Join(v, ":")
-	return fmt.Errorf("[%s:%s]\n %s:%s", file, line, s, info)
+	return fmt.Errorf("[%s]\n %s:%s", fileLine, s, info)
 }
