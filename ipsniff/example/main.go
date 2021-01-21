@@ -6,7 +6,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/lib/ipsniff"
+	"github.com/hauson/lib/ipsniff"
 )
 
 func main() {
