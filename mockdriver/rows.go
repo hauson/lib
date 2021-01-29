@@ -24,7 +24,6 @@ func (r *Rows) Close() error {
 
 // Next mock
 func (r *Rows) Next(dest []driver.Value) error {
-	//return errors.New("Rows Next " + ErrNotImplement.Error())
 	if r.i >= len(r.records) {
 		return io.EOF
 	}
