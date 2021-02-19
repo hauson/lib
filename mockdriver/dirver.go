@@ -67,7 +67,7 @@ func NewStmt(dbName, query string) (*Stmt, error) {
 		return nil, err
 	}
 
-	tableName, err := parseTable(query)
+	tableName, err := parseTableName(query)
 	if err != nil {
 		return nil, err
 	}
@@ -85,12 +85,19 @@ func (s *Stmt) NumInput() int {
 	return s.numInput
 }
 
+// handle insert, update, and delete
 func (s *Stmt) Exec(args []driver.Value) (driver.Result, error) {
 	db := GetDB(s.dbName)
 	table := db.GetTable(s.tableName)
 	fileds, err := parseFields(s.query)
 	if err != nil {
 		return nil, err
+	}
+
+	if s.curdMode == CURDInsert {
+		if !contain(fileds, "id") {
+			fileds = append([]string{"id"}, fileds...)
+		}
 	}
 
 	return table.Exec(s.curdMode, fileds, args)
@@ -104,7 +111,7 @@ func (s *Stmt) Query(args []driver.Value) (driver.Rows, error) {
 
 	return &Rows{
 		columns: table.fields,
-		records:  table.records,
+		records: table.records,
 	}, nil
 }
 

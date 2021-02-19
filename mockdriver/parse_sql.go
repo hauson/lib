@@ -30,7 +30,7 @@ func parseCurdType(query string) (CURDMode, error) {
 
 var selectTableReg, _ = regexp.Compile("(FROM|from) `([a-zA-Z_]+)`")
 
-func parseTable(query string) (string, error) {
+func parseTableName(query string) (string, error) {
 	curdMode, err := parseCurdType(query)
 	if err != nil {
 		return "", err
@@ -55,11 +55,11 @@ func parseTable(query string) (string, error) {
 
 		return ss[len(ss)-1], nil
 	case CURDUpdate:
-		return "", errors.New("parseTable update " + ErrNotImplement.Error())
+		return "", errors.New("parseTableName update " + ErrNotImplement.Error())
 	case CURDDelete:
-		return "", errors.New("parseTable delete " + ErrNotImplement.Error())
+		return "", errors.New("parseTableName delete " + ErrNotImplement.Error())
 	default:
-		return "", errors.New("parseTable unkown " + ErrNotImplement.Error())
+		return "", errors.New("parseTableName unkown " + ErrNotImplement.Error())
 	}
 }
 
@@ -70,9 +70,9 @@ func parseNumInput(query string) int {
 var filedsReg, _ = regexp.Compile("`[a-zA-Z_]+`")
 
 func parseFields(query string) ([]string, error) {
-	tableName, err := parseTable(query)
+	tableName, err := parseTableName(query)
 	if err != nil {
-		return nil, fmt.Errorf("parseTable %s:", err)
+		return nil, fmt.Errorf("parseTableName %s:", err)
 	}
 
 	var fields []string
@@ -84,5 +84,16 @@ func parseFields(query string) ([]string, error) {
 			fields = append(fields, s)
 		}
 	}
+
 	return fields, nil
+}
+
+// contain is ss contain str
+func contain(ss []string, tar string) bool {
+	for _, item := range ss {
+		if item == tar {
+			return true
+		}
+	}
+	return false
 }
