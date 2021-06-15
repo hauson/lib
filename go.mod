@@ -14,4 +14,5 @@ require (
 	github.com/sirupsen/logrus v1.4.3-0.20190807103436-de736cf91b92
 	github.com/skip2/go-qrcode v0.0.0-20191027152451-9434209cb086
 	golang.org/x/image v0.0.0-20200430140353-33d19683fad8
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 )
