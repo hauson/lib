@@ -1,6 +1,6 @@
 package batcher
 
-import "github.com/lib/static"
+import "github.com/hauson/lib/static"
 
 type Batcher struct {
 	total  int
