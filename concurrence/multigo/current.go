@@ -29,6 +29,7 @@ func execRunners(runners []Runner, wg *sync.WaitGroup, exitCh <-chan int, errCh 
 		aResult, err := runner.Exec()
 		if err != nil {
 			errCh <- err
+			return
 		}
 
 		if result == nil {
@@ -40,7 +41,7 @@ func execRunners(runners []Runner, wg *sync.WaitGroup, exitCh <-chan int, errCh 
 	resultCh <- result
 }
 
-func divide(goNum int, runners []Runner) [][]Runner {
+func divideRunners(goNum int, runners []Runner) [][]Runner {
 	ss := make([][]Runner, 0, goNum)
 	per, left := len(runners)/goNum, runners
 	for i := 0; i < goNum; i++ {
@@ -72,7 +73,7 @@ func ExecByMultiGo(goNum int, runners []Runner) (Result, error) {
 		close(resultCh)
 	}()
 
-	for _, batch := range divide(goNum, runners) {
+	for _, batch := range divideRunners(goNum, runners) {
 		go execRunners(batch, wg, exitCh, errCh, resultCh)
 	}
 
