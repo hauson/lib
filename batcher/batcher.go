@@ -1,6 +1,6 @@
 package batcher
 
-import "github.com/hauson/lib/static"
+import "github.com/hauson/lib/statisitcs"
 
 type Batcher struct {
 	total  int
@@ -16,7 +16,7 @@ func New(total, cntPer int) *Batcher {
 
 func (b *Batcher) Range(fn func(offset, limit int)) {
 	for offset := 0; offset < b.total; offset += b.cntPer {
-		limit := static.MinInts(b.cntPer, b.total-offset)
+		limit := statisitcs.MinInts(b.cntPer, b.total-offset)
 		fn(offset, limit)
 	}
 }

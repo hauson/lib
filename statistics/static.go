@@ -1,4 +1,4 @@
-package static
+package statisitcs
 
 /*
 math statistic
