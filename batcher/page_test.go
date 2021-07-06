@@ -11,7 +11,7 @@ func TestAA(t *testing.T) {
 		s = append(s, i)
 	}
 
-	const batch = 7
+	const batch = 13
 	for i := 0; i < len(s); i += batch {
 		var page []int
 		FillPage(&page, s, i, batch)

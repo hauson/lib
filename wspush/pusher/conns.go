@@ -3,7 +3,7 @@ package pusher
 import (
 	"sync"
 
-	"github.com/lib/wspush/conn"
+	"github.com/hauson/lib/wspush/conn"
 )
 
 type connects struct {

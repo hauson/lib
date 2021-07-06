@@ -1,4 +1,4 @@
-module github.com/lib
+module github.com/hauson/lib
 
 go 1.14
 
