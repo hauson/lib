@@ -1,15 +1,15 @@
 package client
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"time"
-	"encoding/json"
 
 	"github.com/gorilla/websocket"
 
-	"github.com/lib/wspush/conn"
-	"github.com/lib/wspush/msg"
+	"github.com/hauson/lib/wspush/conn"
+	"github.com/hauson/lib/wspush/msg"
 )
 
 type Client struct {

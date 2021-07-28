@@ -4,7 +4,7 @@ import (
 	"log"
 	"fmt"
 
-	"github.com/lib/worker/roll"
+	"github.com/hauson/lib/worker/roll"
 )
 
 // Worker a goroutine wrapper

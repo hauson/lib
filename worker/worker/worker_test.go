@@ -1,10 +1,11 @@
 package worker
 
 import (
+	"strconv"
 	"testing"
 	"time"
-	"strconv"
-	"github.com/lib/worker/mockjob"
+
+	"github.com/hauson/lib/worker/mockjob"
 )
 
 func TestWorker_AddJob(t *testing.T) {

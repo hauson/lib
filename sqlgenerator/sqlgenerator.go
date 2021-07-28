@@ -3,8 +3,9 @@ package sqlgenerator
 import (
 	"errors"
 	"fmt"
-	sq "github.com/squirrel"
 	"strings"
+
+	sq "github.com/Masterminds/squirrel"
 
 	"github.com/hauson/lib/char"
 	"github.com/hauson/lib/types"

@@ -1,0 +1,74 @@
+# github.com/Masterminds/squirrel v1.5.0
+## explicit
+github.com/Masterminds/squirrel
+# github.com/emirpasic/gods v1.12.1-0.20200331185943-80e934ed68b9
+## explicit
+github.com/emirpasic/gods/containers
+github.com/emirpasic/gods/trees
+github.com/emirpasic/gods/trees/redblacktree
+github.com/emirpasic/gods/utils
+# github.com/gin-gonic/gin v1.6.3-0.20200525121309-c9b853581700
+## explicit
+# github.com/go-sql-driver/mysql v1.6.0
+## explicit
+github.com/go-sql-driver/mysql
+# github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
+## explicit
+github.com/golang/freetype
+github.com/golang/freetype/raster
+github.com/golang/freetype/truetype
+# github.com/google/gopacket v1.1.19
+## explicit
+github.com/google/gopacket
+github.com/google/gopacket/layers
+github.com/google/gopacket/pcap
+# github.com/google/uuid v1.1.2
+## explicit
+github.com/google/uuid
+# github.com/gorilla/websocket v1.4.2
+## explicit
+github.com/gorilla/websocket
+# github.com/jinzhu/gorm v1.9.16
+## explicit
+github.com/jinzhu/gorm
+# github.com/jinzhu/inflection v1.0.0
+github.com/jinzhu/inflection
+# github.com/konsorten/go-windows-terminal-sequences v1.0.1
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/lann/builder v0.0.0-20180802200727-47ae307949d0
+## explicit
+github.com/lann/builder
+# github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0
+github.com/lann/ps
+# github.com/lestrrat-go/file-rotatelogs v2.3.1-0.20200409032425-0b0a5762632f+incompatible
+## explicit
+github.com/lestrrat-go/file-rotatelogs
+github.com/lestrrat-go/file-rotatelogs/internal/option
+# github.com/lestrrat-go/strftime v1.0.2-0.20200106011558-d3c5981dbca3
+## explicit
+github.com/lestrrat-go/strftime
+# github.com/pkg/errors v0.8.1
+github.com/pkg/errors
+# github.com/sergi/go-diff v1.1.0
+## explicit
+github.com/sergi/go-diff/diffmatchpatch
+# github.com/sirupsen/logrus v1.4.3-0.20190807103436-de736cf91b92
+## explicit
+github.com/sirupsen/logrus
+# github.com/skip2/go-qrcode v0.0.0-20191027152451-9434209cb086
+## explicit
+github.com/skip2/go-qrcode
+github.com/skip2/go-qrcode/bitset
+github.com/skip2/go-qrcode/reedsolomon
+# github.com/timest/gomanuf v0.0.0-20210331135121-379ce410783c
+## explicit
+github.com/timest/gomanuf
+# golang.org/x/image v0.0.0-20200430140353-33d19683fad8
+## explicit
+golang.org/x/image/font
+golang.org/x/image/math/fixed
+# golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+## explicit
+# golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
+golang.org/x/sys/unix
+golang.org/x/sys/windows

@@ -1,8 +1,9 @@
 package ipsniff
 
 import (
-	"github.com/lib/ipsniff/netdevice"
 	"sync"
+
+	"github.com/hauson/lib/ipsniff/netdevice"
 )
 
 type IPTable struct {

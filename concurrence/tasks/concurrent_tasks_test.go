@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bytom/blockcenter/test/suit"
+	"github.com/hauson/lib/testsuit"
 )
 
 func TestMultiTask(t *testing.T) {
@@ -13,7 +13,7 @@ func TestMultiTask(t *testing.T) {
 		SpendTimes []time.Duration
 		OutTime    time.Duration
 	}
-	suit.TestSuit{
+	testsuit.TestSuit{
 		{
 			Desc: "",
 			Args: Args{
@@ -25,7 +25,7 @@ func TestMultiTask(t *testing.T) {
 			WantErr:      "",
 			IgnoreFileds: []string{},
 		},
-	}.Range(t, func(c *suit.TestCase) (interface{}, error) {
+	}.Range(t, func(c *testsuit.TestCase) (interface{}, error) {
 		args := c.Args.(Args)
 		tasks := make([]TaskAble, args.TaskNum)
 		for i := 0; i < args.TaskNum; i++ {

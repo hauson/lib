@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/lib/wspush/configs"
-	"github.com/lib/exception"
-	"github.com/lib/wspush/pusher"
+	"github.com/hauson/lib/wspush/configs"
+	"github.com/hauson/lib/exception"
+	"github.com/hauson/lib/wspush/pusher"
 )
 
 func main() {

@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/lib/wspush/msg"
+	"github.com/hauson/lib/wspush/msg"
 )
 
 const (

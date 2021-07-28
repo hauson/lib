@@ -6,8 +6,8 @@ import (
 	"time"
 	"math/rand"
 
-	"github.com/lib/worker/mockjob"
-	"github.com/lib/worker/sequence"
+	"github.com/hauson/lib/worker/mockjob"
+	"github.com/hauson/lib/worker/sequence"
 )
 
 func TestWorkshop_AddJob(t *testing.T) {

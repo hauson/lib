@@ -113,23 +113,6 @@ func (tree *Tree) Get(key interface{}) (value interface{}, found bool) {
 	return nil, false
 }
 
-// Tops returns n keys and value in-order from top
-func (tree *Tree) Tops(n int) (keys, values []interface{}) {
-	keys = []interface{}{}
-	values = []interface{}{}
-
-	it := tree.Iterator()
-	for i := 0; it.Next(); i++ {
-		if n > 0 && i >= n {
-			break
-		}
-
-		keys = append(keys, it.Key())
-		values = append(values, it.Value())
-	}
-	return keys, values
-}
-
 // Remove remove the node from the tree by key.
 // Key should adhere to the comparator's type assertion, otherwise method panics.
 func (tree *Tree) Remove(key interface{}) {

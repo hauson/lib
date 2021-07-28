@@ -3,9 +3,9 @@ package singleflight
 import (
 	"sync"
 	"time"
-
-	"github.com/lib/container/prioqueue"
 	"fmt"
+
+	"github.com/hauson/lib/container/prioqueue"
 )
 
 type Singler struct {

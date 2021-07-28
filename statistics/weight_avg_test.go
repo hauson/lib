@@ -3,11 +3,11 @@ package statisitcs
 import (
 	"testing"
 
-	"github.com/bytom/blockcenter/test/suit"
+	"github.com/hauson/lib/testsuit"
 )
 
 func TestWeightAvg(t *testing.T) {
-	suit.TestSuit{
+	testsuit.TestSuit{
 		{
 			Desc: "error",
 			Args: []*WeightNumber{
@@ -55,7 +55,7 @@ func TestWeightAvg(t *testing.T) {
 			},
 			WantResults: 3.0,
 		},
-	}.Range(t, func(c *suit.TestCase) (interface{}, error) {
+	}.Range(t, func(c *testsuit.TestCase) (interface{}, error) {
 		numbers := c.Args.([]*WeightNumber)
 		return WeightAvg(numbers)
 	})

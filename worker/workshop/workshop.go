@@ -2,7 +2,7 @@ package workshop
 
 import (
 	"fmt"
-	"github.com/lib/worker/worker"
+	"github.com/hauson/lib/worker/worker"
 )
 
 type Workshop struct {

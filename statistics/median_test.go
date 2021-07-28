@@ -3,11 +3,11 @@ package statisitcs
 import (
 	"testing"
 
-	"github.com/bytom/blockcenter/test/suit"
+	"github.com/hauson/lib/testsuit"
 )
 
 func TestMedian(t *testing.T) {
-	suit.TestSuit{
+	testsuit.TestSuit{
 		{
 			Desc:        "odd number",
 			Args:        []float64{1.0, 3.0, 8.0, 2.0, 4.0},
@@ -23,7 +23,7 @@ func TestMedian(t *testing.T) {
 			Args:    []float64{},
 			WantErr: "inputs is empty",
 		},
-	}.Range(t, func(c *suit.TestCase) (interface{}, error) {
+	}.Range(t, func(c *testsuit.TestCase) (interface{}, error) {
 		numbers := c.Args.([]float64)
 		return Median(numbers)
 	})

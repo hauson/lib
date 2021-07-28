@@ -3,7 +3,7 @@ package netdevice
 import (
 	"time"
 	"net"
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/timest/gomanuf"
 	"github.com/google/gopacket/pcap"
 	"github.com/google/gopacket"

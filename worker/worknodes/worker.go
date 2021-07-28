@@ -3,8 +3,8 @@ package worknodes
 import (
 	"fmt"
 
-	"github.com/lib/consistenthash"
-	"github.com/lib/worker/worker"
+	"github.com/hauson/lib/consistenthash"
+	"github.com/hauson/lib/worker/worker"
 )
 
 //WorkerNodes a worker list

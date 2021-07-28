@@ -3,11 +3,11 @@ package statisitcs
 import (
 	"testing"
 
-	"github.com/bytom/blockcenter/test/suit"
+	"github.com/hauson/lib/testsuit"
 )
 
 func TestMADFilter(t *testing.T) {
-	suit.TestSuit{
+	testsuit.TestSuit{
 		{
 			Desc:        "normal",
 			Args:        []float64{1.0, 1.0001, 1.0002, 1.0003},
@@ -31,7 +31,7 @@ func TestMADFilter(t *testing.T) {
 			Args:        []float64{1, 1, 1},
 			WantResults: []float64{1, 1, 1},
 		},
-	}.Range(t, func(c *suit.TestCase) (interface{}, error) {
+	}.Range(t, func(c *testsuit.TestCase) (interface{}, error) {
 		numbers := c.Args.([]float64)
 		return MADFilter(numbers)
 	})

@@ -4,9 +4,9 @@ import (
 	"time"
 	"os"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 
-	"github.com/lib/ipsniff/netdevice"
+	"github.com/hauson/lib/ipsniff/netdevice"
 )
 
 type Sniff struct {

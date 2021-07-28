@@ -3,7 +3,7 @@ package statisitcs
 import (
 	"testing"
 
-	"github.com/bytom/blockcenter/test/suit"
+	"github.com/hauson/lib/testsuit"
 )
 
 func TestKMax(t *testing.T) {
@@ -11,7 +11,7 @@ func TestKMax(t *testing.T) {
 		Numbers []float64
 		K       int
 	}
-	suit.TestSuit{
+	testsuit.TestSuit{
 		{
 			Desc: "k exceed error",
 			Args: Args{
@@ -61,7 +61,7 @@ func TestKMax(t *testing.T) {
 			},
 			WantResults: 1.0,
 		},
-	}.Range(t, func(c *suit.TestCase) (interface{}, error) {
+	}.Range(t, func(c *testsuit.TestCase) (interface{}, error) {
 		args := c.Args.(Args)
 		return KMax(args.Numbers, args.K)
 	})

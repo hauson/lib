@@ -5,9 +5,9 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/lib/wspush/configs"
-	"github.com/lib/wspush/conn"
-	"github.com/lib/wspush/msg"
+	"github.com/hauson/lib/wspush/configs"
+	"github.com/hauson/lib/wspush/conn"
+	"github.com/hauson/lib/wspush/msg"
 )
 
 // Pusher a conn container

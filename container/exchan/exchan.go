@@ -1,8 +1,8 @@
 package exchan
 
 import (
-	"github.com/lib/container/queue"
-	"github.com/lib/concurrence/trylock"
+	"github.com/hauson/lib/container/queue"
+	"github.com/hauson/lib/concurrence/trylock"
 )
 
 // ExChan wrapper chan with infinite capacity

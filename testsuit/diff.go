@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/lib/types"
-
 	"github.com/sergi/go-diff/diffmatchpatch"
+
+	"github.com/hauson/lib/types"
 )
 
 var dmp = diffmatchpatch.New()
