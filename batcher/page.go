@@ -4,7 +4,6 @@ import (
 	"reflect"
 )
 
-
 // FillPage fill page by slice
 func FillPage(page interface{}, all interface{}, offset, limit int) {
 	if reflect.TypeOf(page).Kind() != reflect.Ptr {
