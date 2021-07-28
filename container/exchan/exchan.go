@@ -1,8 +1,8 @@
 package exchan
 
 import (
-	"github.com/hauson/lib/container/queue"
 	"github.com/hauson/lib/concurrence/trylock"
+	"github.com/hauson/lib/container/queue"
 )
 
 // ExChan wrapper chan with infinite capacity
@@ -17,7 +17,7 @@ type ExChan struct {
 func New() *ExChan {
 	c := &ExChan{
 		lock:  trylock.New(),
-		queue: queue.New(),
+		queue: queue.NewQueue(),
 		in:    make(chan interface{}, 1024),
 		out:   make(chan interface{}, 1024),
 		exit:  make(chan int),
