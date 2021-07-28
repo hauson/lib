@@ -30,7 +30,7 @@ func New() *ExChan {
 func (c *ExChan) run() {
 	var outData interface{}
 	for {
-		if c.queue.Empty() {
+		if c.queue.IsEmpty() {
 			select {
 			case inData := <-c.in:
 				c.queue.EnQueue(inData)
