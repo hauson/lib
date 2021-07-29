@@ -28,10 +28,7 @@ func TestMerge(t *testing.T) {
 	}
 
 	out := make(map[string]S)
-	if err := MergeMaps(out, m1, m2); err != nil {
-		t.Fatal(err)
-	}
-
+	MergeMaps(out, m1, m2)
 	fmt.Print(out)
 }
 
@@ -45,4 +42,17 @@ func (s S) Merge(another S) S {
 		Name:   s.Name,
 		Amount: s.Amount + another.Amount,
 	}
+}
+
+func TestConvMapToSlice(t *testing.T) {
+	m := map[int]int{
+		1: 1,
+		2: 2,
+		3: 3,
+		4: 4,
+		5: 5,
+	}
+	s := []int{7,100}
+	ConvMapToSlice(m, &s)
+	t.Log(s)
 }

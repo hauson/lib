@@ -61,8 +61,7 @@ func FieldValues(i interface{}) []interface{} {
 }
 
 func ToSlice(i interface{}) []interface{} {
-	iType := reflect.TypeOf(i)
-	if iType.Kind() != reflect.Slice {
+	if reflect.TypeOf(i).Kind() != reflect.Slice {
 		return []interface{}{i}
 	}
 
