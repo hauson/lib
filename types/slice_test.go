@@ -18,7 +18,7 @@ func TestSlicePluck(t *testing.T) {
 
 	{
 		// case0 s0 is ptr slice
-	s0 := []*AA{
+		s0 := []*AA{
 			{"cui", 1, Sub{10, "hebei"}},
 			{"hao", 2, Sub{9, "tainjin"}},
 			{"xin", 3, Sub{7, "nanjing"}},
@@ -74,4 +74,47 @@ type AA struct {
 type Sub struct {
 	Sex  int
 	Addr string
+}
+type Obj struct {
+	B int
+	A string
+	C Sub
+}
+
+func TestStrings(t *testing.T) {
+	{
+		t.Log("case : elem slice")
+		s0 := []Obj{
+			{A: "cui", B: 1, C: Sub{10, "hebei"}},
+			{A: "hao", B: 2, C: Sub{9, "tainjin"}},
+			{A: "xin", B: 3, C: Sub{7, "nanjing"}},
+		}
+
+		lines, err := Strings(s0)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		for i, line := range lines {
+			fmt.Println(i+1, line)
+		}
+	}
+
+	{
+		t.Log("elem ptr slice")
+		s0 := []*Obj{
+			{A: "cui", B: 1, C: Sub{10, "hebei"}},
+			{A: "hao", B: 2, C: Sub{9, "tainjin"}},
+			{A: "xin", B: 3, C: Sub{7, "nanjing"}},
+		}
+
+		lines, err := Strings(s0)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		for i, line := range lines {
+			fmt.Println(i+1, line)
+		}
+	}
 }

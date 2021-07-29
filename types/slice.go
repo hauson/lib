@@ -1,8 +1,10 @@
 package types
 
 import (
+	"encoding/json"
 	"errors"
 	"reflect"
+	"sort"
 )
 
 // SlicePluck slice elem one filedName
@@ -35,4 +37,26 @@ func SlicePluck(s0 interface{}, fieldName string, s1 interface{}) error {
 	}
 
 	return nil
+}
+
+// s is slice, convert strings and sort
+func Strings(s interface{}) ([]string, error) {
+	if reflect.TypeOf(s).Kind() != reflect.Slice {
+		return nil, errors.New("args must slice")
+	}
+
+	var lines []string
+	slice := reflect.ValueOf(s)
+	for i := 0; i < slice.Len(); i++ {
+		elem := slice.Index(i).Interface()
+		bytes, err := json.Marshal(elem)
+		if err != nil {
+			return nil, err
+		}
+
+		lines = append(lines, string(bytes))
+	}
+
+	sort.Strings(lines)
+	return lines, nil
 }
