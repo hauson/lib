@@ -118,3 +118,41 @@ func TestStrings(t *testing.T) {
 		}
 	}
 }
+
+type Entry struct {
+	key   string
+	value int
+}
+type Key struct {
+	K string
+}
+
+type Value struct {
+	V int
+}
+
+func (e *Entry) Key() *Key {
+	return &Key{
+		K: e.key,
+	}
+}
+
+func (e *Entry) Value() *Value {
+	return &Value{
+		V: e.value,
+	}
+}
+
+func TestConvSliceToMap(t *testing.T) {
+	s := []*Entry{
+		{"a", 1},
+		{"b", 2},
+		{"c", 3},
+	}
+
+	m := make(map[*Key]*Value)
+	ConvSliceToMap(s, m)
+	for k, v := range m {
+		fmt.Println(*k, *v)
+	}
+}

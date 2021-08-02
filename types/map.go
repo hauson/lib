@@ -53,3 +53,4 @@ func ConvMapToSlice(m interface{}, s interface{}) {
 		slice.Set(reflect.Append(slice, value))
 	}
 }
+

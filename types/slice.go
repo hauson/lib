@@ -60,3 +60,24 @@ func Strings(s interface{}) ([]string, error) {
 	sort.Strings(lines)
 	return lines, nil
 }
+
+// ConvSliceToMap,s must be slice, and  slice item must be Key() and Value() method,  m must be  map[Key()]Value() if args does not conform to specification, will panic
+func ConvSliceToMap(s interface{}, m interface{}) {
+	if reflect.TypeOf(s).Kind() != reflect.Slice {
+		panic("args s must slice")
+	}
+
+	if reflect.TypeOf(m).Kind() != reflect.Map {
+		panic("m must be map")
+	}
+
+	outMap := reflect.ValueOf(m)
+	slice := reflect.ValueOf(s)
+	for i := 0; i < slice.Len(); i++ {
+		elem := slice.Index(i)
+
+		key := elem.MethodByName("Key").Call(nil)[0]
+		value := elem.MethodByName("Value").Call(nil)[0]
+		outMap.SetMapIndex(key, value)
+	}
+}
