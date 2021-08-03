@@ -156,3 +156,98 @@ func TestConvSliceToMap(t *testing.T) {
 		fmt.Println(*k, *v)
 	}
 }
+
+func TestInterfaceMap(t *testing.T) {
+	dict := map[interface{}]bool{
+		"a": true,
+		"b": true,
+		"1": true,
+	}
+
+	fmt.Println(dict["c"])
+	fmt.Println(dict["a"])
+	fmt.Println(dict["b"])
+	fmt.Println(dict[1])
+	fmt.Println(dict["1"])
+}
+
+func TestConvSliceToLookupTable(t *testing.T) {
+	if false {
+		t.Log("case1: int slice")
+		s := []int{1, 2, 3}
+		intDict := ConvSliceToLookupTable(s)
+		fmt.Println(intDict[1])
+		fmt.Println(intDict[4])
+	}
+
+	if false {
+		t.Log("case2: strcut ptr slice")
+		type My struct {
+			s string
+		}
+
+		s := []*My{
+			{"cui"},
+			{"hao"},
+			{"cui"},
+		}
+
+		sDict := ConvSliceToLookupTable(s)
+		for k, v := range sDict {
+			fmt.Println(k, v)
+		}
+	}
+
+	if false {
+		t.Log("case2: strcut slice")
+		type My struct {
+			s string
+		}
+
+		s := []My{
+			{"cui"},
+			{"hao"},
+			{"cui"},
+		}
+
+		sDict := ConvSliceToLookupTable(s)
+		for k, v := range sDict {
+			fmt.Println(k, v)
+		}
+	}
+
+	if true {
+		t.Log("case2: strcut slice")
+		type My struct {
+			S string
+		}
+
+		s := []*My{
+			{"cui"},
+			{"hao"},
+			{"cui"},
+		}
+
+		sDict := ConvSliceToLookupTable(s)
+		for k, v := range sDict {
+			fmt.Println(k, v)
+		}
+	}
+}
+
+func TestAA(t *testing.T) {
+	t.Log("指针做map的key, 相同的值，会合并吗")
+	type My struct {
+		S string
+	}
+	s0 := &My{S: "cui"}
+	s1 := &My{S: "hao"}
+	m := make(map[*My]bool)
+	m[s0] = true
+	m[s1] = true
+	m[s0] = true
+
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+}

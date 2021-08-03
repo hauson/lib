@@ -81,3 +81,18 @@ func ConvSliceToMap(s interface{}, m interface{}) {
 		outMap.SetMapIndex(key, value)
 	}
 }
+
+// ConvSliceToLookupTable convert slice to look up table
+func ConvSliceToLookupTable(s interface{}) map[interface{}]bool {
+	if reflect.TypeOf(s).Kind() != reflect.Slice {
+		panic("args s must slice")
+	}
+
+	lookupTable := make(map[interface{}]bool)
+	slice := reflect.ValueOf(s)
+	for i := 0; i < slice.Len(); i++ {
+		elem := slice.Index(i).Interface()
+		lookupTable[elem] = true
+	}
+	return lookupTable
+}
