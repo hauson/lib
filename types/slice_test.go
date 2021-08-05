@@ -235,7 +235,7 @@ func TestConvSliceToLookupTable(t *testing.T) {
 	}
 }
 
-func TestAA(t *testing.T) {
+func TestMapPtrKey(t *testing.T) {
 	t.Log("指针做map的key, 相同的值，会合并吗")
 	type My struct {
 		S string
@@ -250,4 +250,40 @@ func TestAA(t *testing.T) {
 	for k, v := range m {
 		fmt.Println(k, v)
 	}
+}
+
+func TestSumSlice(t *testing.T) {
+	s := []*Item{
+		{"aa", 1},
+		{"aa", 2},
+		{"bb", 1},
+		{"bb", 3},
+		{"c", 3},
+	}
+
+	m := make(map[string]Item)
+	SumSlice(s, m)
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
+}
+
+type Item struct {
+	k string
+	v int8
+}
+
+func (i Item) Sum(a Item) Item {
+	return Item{
+		k: i.k,
+		v: i.v + a.v,
+	}
+}
+
+func (i *Item) Key() string {
+	return i.k
+}
+
+func (i *Item) Value() Item {
+	return *i
 }

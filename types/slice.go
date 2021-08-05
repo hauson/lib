@@ -96,3 +96,70 @@ func ConvSliceToLookupTable(s interface{}) map[interface{}]bool {
 	}
 	return lookupTable
 }
+
+// SumSlice sum Slice, s is slice, item have Key() and Value() value method, the value have Sum Method
+func SumSlice(s interface{}, m interface{}) {
+	if reflect.TypeOf(s).Kind() != reflect.Slice {
+		panic("s must be slice")
+	}
+
+	if reflect.TypeOf(m).Kind() != reflect.Map {
+		panic("m must be map")
+	}
+
+	outMap := reflect.ValueOf(m)
+	slice := reflect.ValueOf(s)
+	for i := 0; i < slice.Len(); i++ {
+		elem := slice.Index(i)
+		key := elem.MethodByName("Key").Call(nil)[0]
+		value := elem.MethodByName("Value").Call(nil)[0]
+
+		if kValue := outMap.MapIndex(key); kValue.IsValid() {
+			newValue := sum(value, kValue)
+			outMap.SetMapIndex(key, newValue)
+		} else {
+			outMap.SetMapIndex(key, value)
+		}
+	}
+}
+
+func sum(a1, a2 reflect.Value) reflect.Value {
+	kind := a1.Kind()
+	if kind != a2.Kind() {
+		panic("a1 and s2 not same kind")
+	}
+
+	switch kind {
+	case reflect.String:
+		return reflect.ValueOf(a1.String() + a2.String())
+	case reflect.Float32:
+		return reflect.ValueOf(float32(a1.Float() + a2.Float()))
+	case reflect.Float64:
+		return reflect.ValueOf(a1.Float() + a2.Float())
+	case reflect.Int:
+		return reflect.ValueOf(int(a1.Int() + a2.Int()))
+	case reflect.Int8:
+		return reflect.ValueOf(int8(a1.Int() + a2.Int()))
+	case reflect.Int16:
+		return reflect.ValueOf(int16(a1.Int() + a2.Int()))
+	case reflect.Int32:
+		return reflect.ValueOf(int32(a1.Int() + a2.Int()))
+	case reflect.Int64:
+		return reflect.ValueOf((a1.Int() + a2.Int()))
+	case reflect.Uint:
+		return reflect.ValueOf(uint(a1.Int() + a2.Int()))
+	case reflect.Uint8:
+		return reflect.ValueOf(uint8(a1.Int() + a2.Int()))
+	case reflect.Uint16:
+		return reflect.ValueOf(uint16(a1.Int() + a2.Int()))
+	case reflect.Uint32:
+		return reflect.ValueOf(uint32(a1.Int() + a2.Int()))
+	case reflect.Uint64:
+		return reflect.ValueOf(uint64(a1.Int() + a2.Int()))
+	case reflect.Struct:
+		params := []reflect.Value{a2}
+		return a1.MethodByName("Sum").Call(params)[0]
+	default:
+		panic("not this kind " + kind.String())
+	}
+}
