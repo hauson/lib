@@ -145,7 +145,7 @@ func sum(a1, a2 reflect.Value) reflect.Value {
 	case reflect.Int32:
 		return reflect.ValueOf(int32(a1.Int() + a2.Int()))
 	case reflect.Int64:
-		return reflect.ValueOf((a1.Int() + a2.Int()))
+		return reflect.ValueOf(a1.Int() + a2.Int())
 	case reflect.Uint:
 		return reflect.ValueOf(uint(a1.Int() + a2.Int()))
 	case reflect.Uint8:
