@@ -261,7 +261,7 @@ func TestSumSlice(t *testing.T) {
 		{"c", 3},
 	}
 
-	m := make(map[string]Item)
+	m := make(map[string]*Item)
 	SumSlice(s, m)
 	for k, v := range m {
 		fmt.Println(k, v)
@@ -273,8 +273,8 @@ type Item struct {
 	v int8
 }
 
-func (i Item) Sum(a Item) Item {
-	return Item{
+func (i *Item) Sum(a *Item) *Item {
+	return &Item{
 		k: i.k,
 		v: i.v + a.v,
 	}
@@ -284,6 +284,6 @@ func (i *Item) Key() string {
 	return i.k
 }
 
-func (i *Item) Value() Item {
-	return *i
+func (i *Item) Value() *Item {
+	return i
 }

@@ -156,10 +156,10 @@ func sum(a1, a2 reflect.Value) reflect.Value {
 		return reflect.ValueOf(uint32(a1.Int() + a2.Int()))
 	case reflect.Uint64:
 		return reflect.ValueOf(uint64(a1.Int() + a2.Int()))
-	case reflect.Struct:
+	case reflect.Struct, reflect.Ptr:
 		params := []reflect.Value{a2}
 		return a1.MethodByName("Sum").Call(params)[0]
 	default:
-		panic("not this kind " + kind.String())
+		panic("can not deal this kind " + kind.String())
 	}
 }
