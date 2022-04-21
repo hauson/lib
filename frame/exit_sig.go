@@ -15,7 +15,8 @@ func New(f func() error) *ExitSig {
 	}
 }
 
-type GoWithExitSig func(exitSig <-chan int)
+type Sig <-chan int
+type GoWithExitSig func(exitSig Sig)
 
 func (s *ExitSig) RunGo(g GoWithExitSig) {
 	s.wg.Add(1)
